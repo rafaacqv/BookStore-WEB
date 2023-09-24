@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from './material/material.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +17,9 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MaterialModule,
     CoreModule,
-    FlexLayoutModule,
-    MaterialModule
+    ShopModule
   ],
   providers: [],
   bootstrap: [AppComponent]
