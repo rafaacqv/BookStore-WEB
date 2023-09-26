@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Product } from '../shared/models/product.model';
 import { ShopService } from './shop.service';
 import { Category } from '../shared/models/category.model';
@@ -56,6 +56,6 @@ export class ShopComponent implements OnInit {
 
   onFormatSelected(formatId: number) {
     this.formatIdSelected = formatId;
-    this.getProducts;
+    this.getProducts();
   }
 }

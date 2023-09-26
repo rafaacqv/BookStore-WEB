@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.mat-mdc-list-base.mat-mdc-list-base .mdc-list-item--selected
+.mdc-list-item__primary-text, .mat-mdc-list-base.mat-mdc-list-base
+.mdc-list-item--activated .mdc-list-item__primary-text {
+  font-weight: bold !important;
+}
+
+mat-list-item:hover {
+  background-color: lightgrey !important;
+}
+
+mat-drawer-container {
+  min-height: 100vh;
+}

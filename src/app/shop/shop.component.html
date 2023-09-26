@@ -16,14 +16,29 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <h4 class="filter-type">Categories</h4>
       <mat-list>
-        <mat-list-item *ngFor="let category of categories">{{category.name}}</mat-list-item>
-      </mat-list>
-       <h4 class="filter-type">Formats</h4>
-       <mat-list>
-        <mat-list-item *ngFor="let format of formats">{{format.type}}</mat-list-item>
-       </mat-list>
+        <mat-list-item
+          *ngFor="let category of categories"
+          style="cursor: pointer"
+          [activated]="category.id === categoryIdSelected"
+          (click) ="onCategorySelected(category.id)"
+          >{{category.name}}
+        </mat-list-item>
+     </mat-list>
+
+      <h4 class="filter-type">Formats</h4>
+      <mat-list>
+        <mat-list-item
+          *ngFor="let format of formats"
+          style="cursor: pointer"
+          [activated]="format.id === formatIdSelected"
+          (click)="onFormatSelected(format.id)"
+          >{{format.type}}
+        </mat-list-item>
+     </mat-list>
+
     </mat-drawer>
     <mat-drawer-content class="right-nav-content" style="overflow: hidden;">
       <div class="content" fxLayout="row wrap" fxLayoutGap="26px grid">
