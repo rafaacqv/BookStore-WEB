@@ -18,14 +18,11 @@
       </mat-form-field>
       <h4 class="filter-type">Categories</h4>
       <mat-list>
-        <mat-list-item>Pepper</mat-list-item>
-        <mat-list-item>Salt</mat-list-item>
-        <mat-list-item>Paprika</mat-list-item>
-       </mat-list>
+        <mat-list-item *ngFor="let category of categories">{{category.name}}</mat-list-item>
+      </mat-list>
        <h4 class="filter-type">Formats</h4>
        <mat-list>
-        <mat-list-item>Pepper</mat-list-item>
-        <mat-list-item>Salt</mat-list-item>
+        <mat-list-item *ngFor="let format of formats">{{format.type}}</mat-list-item>
        </mat-list>
     </mat-drawer>
     <mat-drawer-content class="right-nav-content" style="overflow: hidden;">
