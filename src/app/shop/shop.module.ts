@@ -5,10 +5,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
 
 import { ShopComponent } from './shop.component';
+import { ProductItemComponent } from './product-item/product-item.component';
 
 @NgModule({
   declarations: [
-    ShopComponent
+    ShopComponent,
+    ProductItemComponent
   ],
   imports: [
     MaterialModule,

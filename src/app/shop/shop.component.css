@@ -1,4 +1,8 @@
 /* Main Container Styles */
+.main-text {
+  font-size: 24px;
+}
+
 .main-container {
   width: 100%;
 
@@ -32,35 +36,4 @@
 
 .filter-type {
   font-weight: bold;
-}
-
-/* Card Styles */
-
-.main-text {
-  font-size: 20px;
-}
-
-mat-card {
-  cursor: pointer;
-}
-
-.content > mat-card {
-  margin-bottom: 16px;
-}
-
-.content > mat-card {
-  width: 200px;
-}
-
-.title-container {
-  height:  64px;
-
-  overflow: hidden;
-  font-size: 14px;
-  text-align: center;
-}
-
-.card-content {
-  color: #B12704;
-  text-align: center;
 }
