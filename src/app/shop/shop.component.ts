@@ -17,6 +17,13 @@ export class ShopComponent implements OnInit {
 
   categoryIdSelected = 0;
   formatIdSelected = 0;
+  sortOptionSelected = 'name';
+
+  sortOptions = [
+    {name: 'Alphabetical', value: 'name'},
+    {name: 'Price: Low to High', value: 'priceAsc'},
+    {name: 'Price: High to Low', value: 'priceDesc'}
+  ]
 
   gridColumns = 3;
 
@@ -29,7 +36,7 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this.shopService.getProducts(this.categoryIdSelected, this.formatIdSelected).subscribe({
+    this.shopService.getProducts(this.categoryIdSelected, this.formatIdSelected, this.sortOptionSelected).subscribe({
       next: response => this.products = response.data,
       error: error => console.error(error)
     });
@@ -56,6 +63,11 @@ export class ShopComponent implements OnInit {
 
   onFormatSelected(formatId: number) {
     this.formatIdSelected = formatId;
+    this.getProducts();
+  }
+
+  onSortSelected(event: any) {
+    this.sortOptionSelected = event.value;
     this.getProducts();
   }
 }

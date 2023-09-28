@@ -3,16 +3,9 @@
     <mat-drawer mode="side" opened class="side-nav">
       <h4 class="filter-type">Sort</h4>
       <mat-form-field>
-        <mat-label>Select method</mat-label>
-        <mat-select name="sort">
-          <mat-option>
-            Alphabetical
-          </mat-option>
-          <mat-option>
-            Price: Low To High
-          </mat-option>
-          <mat-option>
-            Price: High to Low
+        <mat-select name="sort" (selectionChange)="onSortSelected($event)" [(value)]="sortOptionSelected">
+          <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
+            {{sort.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
