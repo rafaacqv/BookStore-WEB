@@ -37,6 +37,16 @@
       <div class="content" fxLayout="row wrap" fxLayoutGap="26px grid">
         <div class="content">
           <h3 class="main-text"><b>Best Sellers</b></h3>
+          <mat-form-field appearance="fill" style="margin-right: 10px;">
+            <mat-label>Search by name</mat-label>
+            <input
+              matInput
+              placeholder="Search by name"
+            />
+            <mat-icon class='search-icon' color="primary" matSuffix
+              >search</mat-icon
+            >
+          </mat-form-field>
         </div>
         <div
           [fxFlex]="(100/gridColumns) + '%'"

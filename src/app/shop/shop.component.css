@@ -16,6 +16,10 @@
 .content {
   width: 800px;
   padding: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Side Nav Styles */
