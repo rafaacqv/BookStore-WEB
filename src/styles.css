@@ -18,3 +18,7 @@ mat-list-item:hover {
 mat-drawer-container {
   min-height: 100vh;
 }
+
+mat-paginator {
+  width: 100%;
+}
