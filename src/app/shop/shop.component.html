@@ -3,7 +3,7 @@
     <mat-drawer mode="side" opened class="side-nav">
       <h4 class="filter-type">Sort</h4>
       <mat-form-field>
-        <mat-select name="sort" (selectionChange)="onSortSelected($event)" [(value)]="sortOptionSelected">
+        <mat-select name="sort" (selectionChange)="onSortSelected($event)" [(value)]="shopParams.sort">
           <mat-option *ngFor="let sort of sortOptions" [value]="sort.value">
             {{sort.name}}
           </mat-option>
@@ -15,7 +15,7 @@
         <mat-list-item
           *ngFor="let category of categories"
           style="cursor: pointer"
-          [activated]="category.id === categoryIdSelected"
+          [activated]="category.id === shopParams.categoryId"
           (click) ="onCategorySelected(category.id)"
           >{{category.name}}
         </mat-list-item>
@@ -26,7 +26,7 @@
         <mat-list-item
           *ngFor="let format of formats"
           style="cursor: pointer"
-          [activated]="format.id === formatIdSelected"
+          [activated]="format.id === shopParams.formatId"
           (click)="onFormatSelected(format.id)"
           >{{format.type}}
         </mat-list-item>
@@ -37,7 +37,6 @@
       <div class="content" fxLayout="row wrap" fxLayoutGap="26px grid">
         <div class="content">
           <h3 class="main-text"><b>Best Sellers</b></h3>
-          <span> Showing <strong>6</strong> of <strong>11</strong> results</span>
         </div>
         <div
           [fxFlex]="(100/gridColumns) + '%'"
@@ -46,7 +45,17 @@
         >
           <app-product-item [product]="product"></app-product-item>
         </div>
-        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"></mat-paginator>
+
+        <app-pager
+          #paginator
+          style="width: 100%;"
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          [pageNumber]="shopParams.pageNumber"
+          (page)="handlePageEvent($event)"
+        >
+        </app-pager>
+
       </div>
     </mat-drawer-content>
   </mat-drawer-container>

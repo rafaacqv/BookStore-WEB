@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Product } from '../shared/models/product.model';
 import { ShopService } from './shop.service';
 import { Category } from '../shared/models/category.model';
 import { Format } from '../shared/models/format.model';
+import { ShopParams } from '../shared/models/shopParams.model';
 
 @Component({
   selector: 'app-shop',
@@ -10,14 +11,11 @@ import { Format } from '../shared/models/format.model';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-
   products: Product[] = [];
   categories: Category[] = [];
   formats: Format[] = [];
 
-  categoryIdSelected = 0;
-  formatIdSelected = 0;
-  sortOptionSelected = 'name';
+  shopParams = new ShopParams();
 
   sortOptions = [
     {name: 'Alphabetical', value: 'name'},
@@ -26,6 +24,8 @@ export class ShopComponent implements OnInit {
   ]
 
   gridColumns = 3;
+
+  totalCount = 0;
 
   constructor(private shopService: ShopService){}
 
@@ -36,8 +36,14 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this.shopService.getProducts(this.categoryIdSelected, this.formatIdSelected, this.sortOptionSelected).subscribe({
-      next: response => this.products = response.data,
+
+    this.shopService.getProducts(this.shopParams).subscribe({
+      next: response => {
+        this.products = response.data,
+        this.shopParams.pageNumber = response.pageIndex,
+        this.shopParams.pageSize = response.pageSize,
+        this.totalCount = response.count
+      },
       error: error => console.error(error)
     });
   }
@@ -57,17 +63,26 @@ export class ShopComponent implements OnInit {
   }
 
   onCategorySelected(categoryId: number) {
-    this.categoryIdSelected = categoryId;
+    this.shopParams.pageNumber = 1;
+    this.shopParams.categoryId = categoryId;
     this.getProducts();
   }
 
   onFormatSelected(formatId: number) {
-    this.formatIdSelected = formatId;
+    this.shopParams.pageNumber = 1;
+    this.shopParams.formatId = formatId;
     this.getProducts();
   }
 
   onSortSelected(event: any) {
-    this.sortOptionSelected = event.value;
+    this.shopParams.sort = event.value;
     this.getProducts();
+  }
+
+  handlePageEvent(event: any) {
+    if(this.shopParams.pageNumber != event.pageIndex + 1) {
+      this.shopParams.pageNumber = event.pageIndex + 1;
+      this.getProducts();
+    }
   }
 }

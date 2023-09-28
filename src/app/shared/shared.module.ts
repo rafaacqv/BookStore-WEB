@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PagerComponent } from './pager/pager.component';
+import { MaterialModule } from '../material/material.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PagerComponent
+  ],
   imports: [
+    MaterialModule,
     CommonModule
+  ],
+  exports: [
+    PagerComponent
   ]
 })
 export class SharedModule { }
