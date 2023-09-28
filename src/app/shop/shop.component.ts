@@ -15,6 +15,8 @@ export class ShopComponent implements OnInit {
   categories: Category[] = [];
   formats: Format[] = [];
 
+  searchTerm: string = "";
+
   shopParams = new ShopParams();
 
   sortOptions = [
@@ -84,5 +86,10 @@ export class ShopComponent implements OnInit {
       this.shopParams.pageNumber = event.pageIndex + 1;
       this.getProducts();
     }
+  }
+
+  onSearch() {
+    this.shopParams.search = this.searchTerm ?? "";
+    this.getProducts();
   }
 }

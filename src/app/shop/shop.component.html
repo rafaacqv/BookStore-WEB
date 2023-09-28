@@ -42,8 +42,11 @@
             <input
               matInput
               placeholder="Search by name"
+              [(ngModel)]="searchTerm"
+              (keyup.enter)="onSearch()"
             />
-            <mat-icon class='search-icon' color="primary" matSuffix
+            <mat-icon (click)="onSearch()" class='search-icon' color="primary" matSuffix
+              style="cursor: pointer;"
               >search</mat-icon
             >
           </mat-form-field>
