@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './core/material/material.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';

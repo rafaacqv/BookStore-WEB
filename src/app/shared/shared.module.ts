@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagerComponent } from './pager/pager.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../core/material/material.module';
 
 
 
