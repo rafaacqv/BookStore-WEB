@@ -14,14 +14,18 @@
 }
 
 
-.content {
+.content, .content-search {
   width: 800px;
   padding: 16px;
 
   display: flex;
   align-items: center;
+}
+
+.content-search {
   justify-content: space-between;
 }
+
 
 /* Side Nav Styles */
 

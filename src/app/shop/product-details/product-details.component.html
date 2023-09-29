@@ -1,3 +1,52 @@
-<div *ngIf="product">
-  <h1>{{product.title}}</h1>
+<div *ngIf="product" class="main-content">
+  <div class="show-product-container">
+    <div class="image-container">
+      <img
+        src={{product.imageUrl}}
+      />
+    </div>
+
+    <div class="title-container">
+      <h1>{{product.title}} <span style="color: #838686 ;">{{product.format}}</span></h1>
+      <p class="author-description">by {{product.author}} (Author)</p>
+      <hr>
+
+      <div style="margin: 30px 0">
+        <p class="description">{{product.description}}</p>
+        <br>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p class="price-info">
+            <strong>
+              Buy new:
+            </strong>
+            <span style="color: #B12704;">
+              {{product.price | currency}}
+            </span>
+          </p>
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let num of numbers" [value]="num">{{num}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="action-container">
+        <button mat-stroked-button color="primary">Add to Cart</button>
+        <button mat-flat-button color="primary">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="product-details-container">
+    <hr style="min-width: 100%;">
+    <h1>Product Details</h1>
+    <div class="details">
+      <p><strong>Title: </strong>{{product.title}}</p>
+      <p><strong>Author: </strong>{{product.author}}</p>
+      <p><strong>Category: </strong>{{product.category}}</p>
+      <p><strong>Format: </strong>{{product.format}}</p>
+      <p><strong>ISBN: </strong>{{product.isbn}}</p>
+    </div>
+  </div>
 </div>

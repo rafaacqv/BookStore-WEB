@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
-  <span class= "logo">BookStore</span>
+  <div class= "logo" (click)="loadHome()">
+    <span>BookStore</span>
+  </div>
   <span class="toolbar-spacer"></span>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Shopping cart icon">
     <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>

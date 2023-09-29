@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailsComponent implements OnInit{
   product?: Product;
+  numbers: Array<number> = [1, 2, 3, 4, 5];
 
   constructor(private shopService: ShopService,
               private activatedRoute: ActivatedRoute) {}
