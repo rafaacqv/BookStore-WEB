@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { AppRoutingModule } from './app-routing.module';
     CoreModule,
     ShopModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi : true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
