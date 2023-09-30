@@ -21,7 +21,12 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if(error) {
           if(error.status === 400) {
-            this.snackbarService.info(error.error.message);
+            if(error.error.errors) {
+              throw error.error;
+            }
+            else {
+              this.snackbarService.info(error.error.message);
+            }
           };
           if(error.status === 401) {
             this.snackbarService.info(error.error.message);
