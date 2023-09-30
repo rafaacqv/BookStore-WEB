@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-server-error',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./server-error.component.css']
 })
 export class ServerErrorComponent {
+  constructor(private router: Router) {}
 
+  navigateHome() {
+    this.router.navigateByUrl('/');
+  }
 }
