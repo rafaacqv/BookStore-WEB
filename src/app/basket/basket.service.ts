@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { Basket } from '../shared/models/basket.model';
+import { Basket, BasketItem } from '../shared/models/basket.model';
 import { HttpClient } from '@angular/common/http';
+import { Product } from '../shared/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,39 @@ export class BasketService {
     return this.basketSource.value;
   }
 
+  addItemToBasket(item: Product, quantity = 1) {
+    const itemToAdd = this.mapProductItemToBasketItem(item);
+    const basket = this.getCurrentBasketValue() ?? this.createBasket();
+    basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
+    this.setBasket(basket);
+  }
 
+  private addOrUpdateItem(items: BasketItem[], itemToAdd: BasketItem, quantity: number): BasketItem[] {
+    const item = items.find(e => e.id === itemToAdd.id);
+    if(item) item.quantity += quantity;
+    else {
+      itemToAdd.quantity = quantity;
+      items.push(itemToAdd);
+    }
+
+    return items;
+  }
+
+  createBasket(): Basket {
+    const basket = new Basket();
+    localStorage.setItem('basket_id', basket.id);
+    return basket;
+  }
+
+  private mapProductItemToBasketItem(item: Product): BasketItem {
+    return {
+      id: item.id,
+      productName: item.title,
+      price: item.price,
+      quantity: 0,
+      imageUrl: item.imageUrl,
+      category: item.category,
+      format: item.format
+    }
+  }
 }
