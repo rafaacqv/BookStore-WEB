@@ -1,1 +1,44 @@
-<p>basket works!</p>
+<div class="container">
+  <div *ngIf="(basketService.basketSource$ | async) == null">
+    <p>There are no items in your basket.</p>
+  </div>
+  <div *ngIf="(basketService.basketSource$ | async) as basket">
+    <h1>Shopping Cart</h1>
+    <div *ngFor="let item of basket.items" class="list-item" style="margin-top: 50px;">
+      <div class="image-container">
+        <img
+          src={{item.imageUrl}}
+        />
+      </div>
+      <div class="main-separator">
+        <div class="description">
+          <h2>{{item.productName}}</h2>
+          <p class="price-tag"><strong>{{item.price | currency}}</strong></p>
+          <div class="general-info">
+            <p>
+              Category: {{item.category}}
+            </p>
+            <p>
+              Format: {{item.format}}
+            </p>
+          </div>
+        </div>
+        <div class="action-shopping">
+          <div class="action-select">
+            <mat-form-field style="width: 70px;">
+              <mat-select [(value)]="item.quantity">
+                <mat-option *ngFor="let number of numbers" [value]="number">{{number}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="action-delete">
+            <button mat-icon-button class="example-icon" aria-label="Delete Icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
