@@ -4,7 +4,11 @@
   </div>
   <span class="toolbar-spacer"></span>
   <a routerLink="/basket" mat-icon-button class="example-icon" aria-label="Basket icon">
-    <mat-icon matBadge="5" matBadgeColor="warn">shopping_cart</mat-icon>
+    <mat-icon *ngIf="(basketService.basketSource$ | async) as basket"
+              matBadge="{{getCount(basket.items)}}"
+              matBadgeColor="warn"
+              >shopping_cart
+    </mat-icon>
   </a>
   <button mat-icon-button class="example-icon" aria-label="Account icon">
     <mat-icon>account_circle</mat-icon>

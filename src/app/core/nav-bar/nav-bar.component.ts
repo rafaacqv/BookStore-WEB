@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ShopService } from 'src/app/shop/shop.service';
+import { BasketService } from 'src/app/basket/basket.service';
+import { BasketItem } from 'src/app/shared/models/basket.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,9 +9,14 @@ import { ShopService } from 'src/app/shop/shop.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              public basketService: BasketService) {}
 
   loadHome() {
     this.router.navigate(['/']);
+  }
+
+  getCount(items: BasketItem[]) {
+    return items.reduce((sum, item) => sum + item.quantity, 0);
   }
 }
