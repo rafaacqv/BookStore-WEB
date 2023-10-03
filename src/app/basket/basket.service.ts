@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Basket, BasketItem } from '../shared/models/basket.model';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../shared/models/product.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class BasketService {
   private basketSource = new BehaviorSubject<Basket | null>(null);
   basketSource$ = this.basketSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
   getBasket(id: string) {
     return this.http.get<Basket>(this.baseUrl + 'basket?id=' + id).subscribe({
@@ -40,7 +41,17 @@ export class BasketService {
 
   private addOrUpdateItem(items: BasketItem[], itemToAdd: BasketItem, quantity: number): BasketItem[] {
     const item = items.find(e => e.id === itemToAdd.id);
-    if(item) item.quantity += quantity;
+    if(item) {
+      var sumLimit = item.quantity + quantity;
+      if(sumLimit <= 5) {
+        item.quantity += quantity;
+        return items;
+      }
+      else {
+        this._snackBar.open("Maximum limit of five for this product.", "Close")
+        return items;
+      }
+    }
     else {
       itemToAdd.quantity = quantity;
       items.push(itemToAdd);

@@ -25,7 +25,7 @@
           </p>
           <mat-form-field>
             <mat-label>Quantity</mat-label>
-            <mat-select>
+            <mat-select [(value)]="selected">
               <mat-option *ngFor="let num of numbers" [value]="num">{{num}}</mat-option>
             </mat-select>
           </mat-form-field>

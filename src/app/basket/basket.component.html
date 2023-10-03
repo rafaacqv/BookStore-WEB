@@ -26,7 +26,7 @@
         <div class="action-shopping">
           <div class="action-select">
             <mat-form-field style="width: 70px;">
-              <mat-select [(value)]="item.quantity">
+              <mat-select [(value)]="item.quantity" (selectionChange)="updateQuantity(basket, item)">
                 <mat-option *ngFor="let number of numbers" [value]="number">{{number}}</mat-option>
               </mat-select>
             </mat-form-field>

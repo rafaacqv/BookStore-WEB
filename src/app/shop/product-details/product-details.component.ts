@@ -12,6 +12,7 @@ import { BasketService } from 'src/app/basket/basket.service';
 export class ProductDetailsComponent implements OnInit{
   product?: Product;
   numbers: Array<number> = [1, 2, 3, 4, 5];
+  selected: number = 1;
 
   constructor(private shopService: ShopService,
               private activatedRoute: ActivatedRoute,
@@ -22,7 +23,7 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   addItemToBasket() {
-    this.product && this.basketService.addItemToBasket(this.product);
+    this.product && this.basketService.addItemToBasket(this.product, this.selected);
   }
 
   getProduct() {
