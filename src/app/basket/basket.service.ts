@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 import { Basket, BasketItem } from '../shared/models/basket.model';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../shared/models/product.model';
