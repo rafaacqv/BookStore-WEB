@@ -24,4 +24,8 @@ export class BasketComponent {
 
     this.basketService.setBasket(basket);
   }
+
+  removeItem(id: number) {
+    this.basketService.removeItemFromBasket(id);
+  }
 }

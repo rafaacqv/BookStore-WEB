@@ -25,6 +25,7 @@ export class NavBarComponent implements OnInit{
   }
 
   getCount(items: BasketItem[]) {
+    console.log(items)
     return items.reduce((sum, item) => sum + item.quantity, 0);
   }
 }

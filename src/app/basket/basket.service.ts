@@ -96,4 +96,23 @@ export class BasketService {
     const total = shipping + subtotal;
     this.basketTotalSource.next({shipping, total, subtotal});
   }
+
+  removeItemFromBasket(id: number) {
+    const basket = this.getCurrentBasketValue();
+    if(!basket) return;
+    basket.items = basket.items.filter(x => x.id !== id);
+    if(basket.items.length > 0) this.setBasket(basket);
+    else this.deleteBasket(basket);
+  }
+
+  deleteBasket(basket: Basket){
+
+    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({
+      next: () => {
+        this.basketSource.next(null);
+        this.basketTotalSource.next(null);
+        localStorage.removeItem('basket_id');
+      }
+    });
+  }
 }
