@@ -9,7 +9,7 @@
     </mat-card>
   </div>
   <div *ngIf="(basketService.basketSource$ | async) as basket">
-    <h1>Shopping Cart</h1>
+    <h1><strong>Shopping Cart</strong></h1>
     <div *ngFor="let item of basket.items" class="list-item" style="margin-top: 50px;">
       <div class="image-container">
         <img
@@ -46,5 +46,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="order-summary">
+    <app-order-totals></app-order-totals>
   </div>
 </div>

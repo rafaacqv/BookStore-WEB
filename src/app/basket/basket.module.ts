@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BasketComponent } from './basket.component';
 import { BasketRoutingModule } from './basket-routing.module';
 import { MaterialModule } from '../core/material/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialModule } from '../core/material/material.module';
   imports: [
     MaterialModule,
     CommonModule,
-    BasketRoutingModule
+    BasketRoutingModule,
+    SharedModule
   ]
 })
 export class BasketModule { }
