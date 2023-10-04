@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PagerComponent } from './pager/pager.component';
 import { MaterialModule } from '../core/material/material.module';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,6 +13,7 @@ import { OrderTotalsComponent } from './order-totals/order-totals.component';
     OrderTotalsComponent
   ],
   imports: [
+    RouterModule,
     MaterialModule,
     CommonModule
   ],
