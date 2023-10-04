@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BasketService } from 'src/app/basket/basket.service';
 import { BasketItem } from 'src/app/shared/models/basket.model';
@@ -8,9 +8,17 @@ import { BasketItem } from 'src/app/shared/models/basket.model';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
   constructor(private router: Router,
               public basketService: BasketService) {}
+
+  items: BasketItem[] = [];
+
+  ngOnInit(): void {
+    this.basketService.basketSource$.subscribe(res => {
+      if(res?.items) this.items = res.items;
+    })
+  }
 
   loadHome() {
     this.router.navigate(['/']);
