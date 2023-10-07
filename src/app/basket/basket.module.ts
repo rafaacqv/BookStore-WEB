@@ -12,8 +12,8 @@ import { SharedModule } from '../shared/shared.module';
     BasketComponent
   ],
   imports: [
-    MaterialModule,
     CommonModule,
+    MaterialModule,
     BasketRoutingModule,
     SharedModule
   ]
