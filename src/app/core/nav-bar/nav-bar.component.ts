@@ -9,8 +9,7 @@ import { BasketItem } from 'src/app/shared/models/basket.model';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit{
-  constructor(private router: Router,
-              public basketService: BasketService) {}
+  constructor(private router: Router, public basketService: BasketService) {}
 
   items: BasketItem[] = [];
 
@@ -18,10 +17,6 @@ export class NavBarComponent implements OnInit{
     this.basketService.basketSource$.subscribe(res => {
       if(res?.items) this.items = res.items;
     })
-  }
-
-  loadHome() {
-    this.router.navigate(['/']);
   }
 
   getCount(items: BasketItem[]) {

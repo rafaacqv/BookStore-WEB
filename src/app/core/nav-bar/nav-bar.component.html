@@ -1,7 +1,10 @@
 <mat-toolbar color="primary">
-  <div class= "logo" (click)="loadHome()">
-    <span>BookStore</span>
-  </div>
+  <a routerLink="/">
+    <div class= "logo">
+      <span style="color: white;">BookStore</span>
+    </div>
+  </a>
+
   <span class="toolbar-spacer"></span>
   <a routerLink="/basket" mat-icon-button class="example-icon" aria-label="Basket icon">
     <mat-icon *ngIf="(basketService.basketSource$ | async) as basket"
@@ -13,8 +16,18 @@
               >shopping_cart
     </mat-icon>
   </a>
-  <button mat-icon-button class="example-icon" aria-label="Account icon">
+  <button mat-icon-button class="example-icon"
+          [matMenuTriggerFor]="menu"
+          aria-label="Account icon">
     <mat-icon>account_circle</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <a routerLink="/account/login">
+      <button mat-menu-item>Log In</button>
+    </a>
+    <a routerLink="/account/register">
+      <button mat-menu-item>Register</button>
+    </a>
+  </mat-menu>
 </mat-toolbar>
 
