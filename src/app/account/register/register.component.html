@@ -13,11 +13,20 @@
 
         <mat-form-field class="form-field-spacing">
           <input type="email" matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.controls['email'].hasError('required')">
+          <mat-spinner *ngIf="registerForm.controls['email'].status === 'PENDING'"
+                       matSuffix diameter="16" style="display: inline-flex"
+                       style="margin-right: 5px;">
+          </mat-spinner>
+
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email') &&
+                            !registerForm.controls['email'].hasError('required')">
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
             Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('emailExists')">
+            Email address is already taken
           </mat-error>
         </mat-form-field>
 
