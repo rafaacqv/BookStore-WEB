@@ -1,1 +1,41 @@
-<p>register works!</p>
+<mat-card style="width: 400px;">
+  <mat-card-title style="margin: 40px;">Sign Up</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-content">
+      <div class="form-fields">
+        <mat-form-field class="form-field-spacing">
+          <input type="text" matInput placeholder="Name" formControlName="displayName" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="registerForm.controls['displayName'].hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field-spacing">
+          <input type="email" matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="registerForm.controls['email'].hasError('email') && !registerForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field-spacing">
+          <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['password'].hasError('pattern') && !registerForm.controls['password'].hasError('required')">
+            Password not strong enough
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button sign-action-container">
+        <button  style="width: 100%; height: 50px;" type="submit" mat-raised-button color="primary">Sign Up</button>
+      </div>
+    </div>
+    </form>
+    </mat-card-content>
+</mat-card>
