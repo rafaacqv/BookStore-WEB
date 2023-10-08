@@ -1,7 +1,7 @@
 <mat-card style="width: 400px;">
   <mat-card-title style="margin: 40px;">Login</mat-card-title>
   <mat-card-content>
-    <form >
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-content">
       <div class="form-fields">
         <mat-form-field>

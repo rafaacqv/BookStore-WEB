@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
 import { BasketItem } from 'src/app/shared/models/basket.model';
 
@@ -9,7 +10,9 @@ import { BasketItem } from 'src/app/shared/models/basket.model';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit{
-  constructor(private router: Router, public basketService: BasketService) {}
+  constructor(private router: Router,
+              public basketService: BasketService,
+              public accountService: AccountService) {}
 
   items: BasketItem[] = [];
 

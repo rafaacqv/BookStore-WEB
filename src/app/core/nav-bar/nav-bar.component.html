@@ -16,18 +16,41 @@
               >shopping_cart
     </mat-icon>
   </a>
-  <button mat-icon-button class="example-icon"
+  <button *ngIf="(accountService.currentUser$ | async) == null"
+          mat-icon-button class="example-icon"
           [matMenuTriggerFor]="menu"
-          aria-label="Account icon">
+          aria-label="Account">
     <mat-icon>account_circle</mat-icon>
   </button>
+  <button *ngIf="(accountService.currentUser$ | async) as user"
+          mat-button
+          [matMenuTriggerFor]="menu"
+          style="flex-direction: row-reverse;">
+          Welcome, {{user.displayName}}!
+          <mat-icon _ngcontent-ng-c3686529117="" role="img"
+          class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+          aria-hidden="true" data-mat-icon-type="font">arrow_drop_down</mat-icon>
+  </button>
   <mat-menu #menu="matMenu">
-    <a routerLink="/account/login">
-      <button mat-menu-item>Log In</button>
-    </a>
-    <a routerLink="/account/register">
-      <button mat-menu-item>Register</button>
-    </a>
+    <ng-container *ngIf="(accountService.currentUser$ | async) == null">
+      <a routerLink="/account/login">
+        <button mat-menu-item>Log In</button>
+      </a>
+      <a routerLink="/account/register">
+        <button mat-menu-item>Register</button>
+      </a>
+    </ng-container>
+    <ng-container *ngIf="(accountService.currentUser$ | async)">
+      <a routerLink="/basket">
+        <button mat-menu-item>View Basket</button>
+      </a>
+      <a routerLink="/orders">
+        <button mat-menu-item>View Orders</button>
+      </a>
+      <a (click)="accountService.logout()">
+        <button mat-menu-item>Logout</button>
+      </a>
+    </ng-container>
   </mat-menu>
 </mat-toolbar>
 
