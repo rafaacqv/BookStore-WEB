@@ -4,17 +4,26 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-content">
       <div class="form-fields">
-        <mat-form-field>
-          <input type="email" matInput placeholder="Email" formControlName="email">
+        <mat-form-field class="form-field-spacing">
+          <input type="email" matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="loginForm.controls['email'].hasError('email') && !loginForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="form-field-spacing">
           <input type="password" matInput placeholder="Password" formControlName="password">
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="button login-action-container">
-        <button style="width: 100%; height: 50px;" type="submit" mat-raised-button color="primary">Login</button>
+        <button  style="width: 100%; height: 50px;" type="submit" mat-raised-button color="primary">Login</button>
       </div>
     </div>
     </form>

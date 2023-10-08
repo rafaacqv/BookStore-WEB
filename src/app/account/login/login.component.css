@@ -45,3 +45,7 @@ mat-card-title {
 .login-action-container {
   width: 100%;
 }
+
+.form-field-spacing {
+  margin-bottom: 5px;
+}
