@@ -1,1 +1,22 @@
-<p>login works!</p>
+<mat-card style="width: 400px;">
+  <mat-card-title style="margin: 40px;">Login</mat-card-title>
+  <mat-card-content>
+    <form >
+    <div class="form-content">
+      <div class="form-fields">
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+      </div>
+
+      <div class="button login-action-container">
+        <button style="width: 100%; height: 50px;" type="submit" mat-raised-button color="primary">Login</button>
+      </div>
+    </div>
+    </form>
+    </mat-card-content>
+</mat-card>

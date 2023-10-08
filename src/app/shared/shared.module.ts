@@ -4,6 +4,7 @@ import { PagerComponent } from './pager/pager.component';
 import { MaterialModule } from '../core/material/material.module';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,11 +16,13 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     MaterialModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     PagerComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
