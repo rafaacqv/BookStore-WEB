@@ -4,6 +4,7 @@ import { DeliveryMethod } from '../../models/deliveryMethod.model';
 import { CheckoutService } from 'src/app/checkout/checkout.service';
 import { AccountService } from 'src/app/account/account.service';
 import { SnackBarService } from 'src/app/core/material/snackbar.service';
+import { BasketService } from 'src/app/basket/basket.service';
 
 @Component({
   selector: 'app-stepper',
@@ -15,7 +16,8 @@ export class StepperComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private checkoutService: CheckoutService,
               private accountService: AccountService,
-              private snackBarService: SnackBarService) {}
+              private snackBarService: SnackBarService,
+              private basketService: BasketService) {}
 
   ngOnInit(): void {
     this.getDeliveryMethods();
@@ -32,7 +34,7 @@ export class StepperComponent implements OnInit{
   });
 
   deliveryForm = this.fb.group({
-      deliveryMethod: ['1']
+      deliveryMethod: [this.getDeliveryMethodIdValue(), Validators.required]
   })
 
   paymentForm = this.fb.group({
@@ -41,6 +43,10 @@ export class StepperComponent implements OnInit{
 
   isLinear = true;
   deliveryMethods: DeliveryMethod[] = [];
+
+  getDeliveryMethodIdValue() {
+    return (this.basketService.shippingValue == 0) ? '' : this.basketService.shippingValue.toString();
+  }
 
   getDeliveryMethods() {
     this.checkoutService.getDeliveryMethods().subscribe({
@@ -63,6 +69,10 @@ export class StepperComponent implements OnInit{
         this.addressForm.reset(this.addressForm.value);
       }
     })
+  }
+
+  setShippingPrice(deliveryMethod: DeliveryMethod) {
+    this.basketService.setShippingPrice(deliveryMethod);
   }
 
 }

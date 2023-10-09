@@ -66,7 +66,11 @@
   <mat-step [stepControl]="deliveryForm" label="Delivery">
     <form [formGroup]="deliveryForm">
       <mat-radio-group formControlName="deliveryMethod">
-        <mat-radio-button *ngFor="let method of deliveryMethods" value="{{method.id}}" style="display: block;">
+        <mat-radio-button
+        *ngFor="let method of deliveryMethods"
+        value="{{method.id}}"
+        style="display: block;"
+        (click)="setShippingPrice(method)">
           <b>{{method.shortName}} - {{method.price | currency}}</b>
           <p>{{method.description}}</p>
         </mat-radio-button>
