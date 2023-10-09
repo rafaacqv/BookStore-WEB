@@ -5,10 +5,10 @@ export interface User {
 }
 
 export interface Address {
-  firstName: string;
-  lastName: string;
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  street?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zipCode?: string | null;
 }
