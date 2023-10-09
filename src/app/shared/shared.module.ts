@@ -5,13 +5,15 @@ import { MaterialModule } from '../core/material/material.module';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 
 
 @NgModule({
   declarations: [
     PagerComponent,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    StepperComponent
   ],
   imports: [
     RouterModule,
@@ -22,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     PagerComponent,
     OrderTotalsComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StepperComponent
   ]
 })
 export class SharedModule { }

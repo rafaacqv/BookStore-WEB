@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  min-height: 100%;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-top: 40px;
+
+  padding: 15px;
+}
+
+.main-checkout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
