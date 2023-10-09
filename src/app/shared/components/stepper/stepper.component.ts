@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DeliveryMethod } from '../../models/deliveryMethod.model';
 import { CheckoutService } from 'src/app/checkout/checkout.service';
+import { AccountService } from 'src/app/account/account.service';
 
 @Component({
   selector: 'app-stepper',
@@ -10,12 +11,13 @@ import { CheckoutService } from 'src/app/checkout/checkout.service';
 })
 export class StepperComponent implements OnInit{
 
-  constructor(private fb: FormBuilder, private checkoutService: CheckoutService) {}
+  constructor(private fb: FormBuilder,
+              private checkoutService: CheckoutService,
+              private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.checkoutService.getDeliveryMethods().subscribe({
-      next: result => this.deliveryMethods = result
-    })
+    this.getDeliveryMethods();
+    this.getAddressValues();
   }
 
   addressForm = this.fb.group({
@@ -24,7 +26,7 @@ export class StepperComponent implements OnInit{
       street: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      zipcode: ['', Validators.required]
+      zipCode: ['', Validators.required]
   });
 
   deliveryForm = this.fb.group({
@@ -37,5 +39,19 @@ export class StepperComponent implements OnInit{
 
   isLinear = true;
   deliveryMethods: DeliveryMethod[] = [];
+
+  getDeliveryMethods() {
+    this.checkoutService.getDeliveryMethods().subscribe({
+      next: result => this.deliveryMethods = result
+    })
+  }
+
+  getAddressValues() {
+    this.accountService.getUserAddress().subscribe({
+      next: address => {
+        address && this.addressForm.patchValue(address);
+      }
+    })
+  }
 
 }
