@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 1000px;
+  width: 1300px;
   min-height: 100%;
   margin: 0 auto;
   margin-top: 0px;
@@ -12,5 +12,5 @@
 
 .main-checkout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
