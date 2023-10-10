@@ -13,6 +13,9 @@ export interface BasketItem {
 export interface Basket {
   id: string;
   items: Array<BasketItem>;
+  clientSecret?: string;
+  paymentIntentId?: string;
+  deliveryMethodId?: number;
 }
 
 export class Basket implements Basket {

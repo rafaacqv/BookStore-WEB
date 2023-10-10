@@ -5,7 +5,7 @@ import { MaterialModule } from '../core/material/material.module';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StepperComponent } from './components/stepper/stepper.component';
+import { StepperComponent } from '../checkout/stepper/stepper.component';
 
 
 
@@ -13,7 +13,6 @@ import { StepperComponent } from './components/stepper/stepper.component';
   declarations: [
     PagerComponent,
     OrderTotalsComponent,
-    StepperComponent
   ],
   imports: [
     RouterModule,
@@ -25,7 +24,6 @@ import { StepperComponent } from './components/stepper/stepper.component';
     PagerComponent,
     OrderTotalsComponent,
     ReactiveFormsModule,
-    StepperComponent
   ]
 })
 export class SharedModule { }

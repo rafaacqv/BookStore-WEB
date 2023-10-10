@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { DeliveryMethod } from '../../models/deliveryMethod.model';
+import { DeliveryMethod } from '../../shared/models/deliveryMethod.model';
 import { CheckoutService } from 'src/app/checkout/checkout.service';
 import { AccountService } from 'src/app/account/account.service';
 import { SnackBarService } from 'src/app/core/material/snackbar.service';
 import { BasketService } from 'src/app/basket/basket.service';
-import { Basket } from '../../models/basket.model';
-import { Address } from '../../models/user.model';
+import { Basket } from '../../shared/models/basket.model';
+import { Address } from '../../shared/models/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,12 +25,12 @@ export class StepperComponent implements OnInit{
 
   ngOnInit(): void {
     this.getDeliveryMethods();
+    this.getDeliveryMethodValue();
     this.getAddressValues();
   }
 
   isLinear = true;
   deliveryMethods: DeliveryMethod[] = [];
-  deliverMethodSelected = this.basketService.shippingValue;
 
   addressForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -42,7 +42,7 @@ export class StepperComponent implements OnInit{
   });
 
   deliveryForm = this.fb.group({
-      deliveryMethod: [this.deliverMethodSelected, Validators.required]
+      deliveryMethod: ['', Validators.required]
   })
 
   paymentForm = this.fb.group({
@@ -101,8 +101,14 @@ export class StepperComponent implements OnInit{
     })
   }
 
+  getDeliveryMethodValue() {
+    const basket = this.basketService.getCurrentBasketValue();
+    if(basket && basket.deliveryMethodId) {
+      this.deliveryForm.controls.deliveryMethod.patchValue(basket.deliveryMethodId.toString());
+    }
+  }
+
   setShippingPrice(deliveryMethod: DeliveryMethod) {
     this.basketService.setShippingPrice(deliveryMethod);
   }
-
 }

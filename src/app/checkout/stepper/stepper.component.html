@@ -68,10 +68,10 @@
       <mat-radio-group formControlName="deliveryMethod">
         <mat-radio-button
         *ngFor="let method of deliveryMethods"
-        [checked]="deliverMethodSelected == method.id"
+        id={{method.id}}
         value={{method.id}}
-        style="display: block;"
-        (click)="setShippingPrice(method)">
+        (click)="setShippingPrice(method)"
+        style="display: block;">
           <b>{{method.shortName}} - {{method.price | currency}}</b>
           <p>{{method.description}}</p>
         </mat-radio-button>

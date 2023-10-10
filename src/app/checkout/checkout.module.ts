@@ -5,13 +5,15 @@ import { CheckoutRoutingModule } from './checkout-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CheckoutSuccessComponent } from './checkout-success/checkout-success.component';
 import { MaterialModule } from '../core/material/material.module';
+import { StepperComponent } from './stepper/stepper.component';
 
 
 
 @NgModule({
   declarations: [
     CheckoutComponent,
-    CheckoutSuccessComponent
+    CheckoutSuccessComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { MaterialModule } from '../core/material/material.module';
     MaterialModule
   ],
   exports: [
-    CheckoutSuccessComponent
+    CheckoutSuccessComponent,
+    StepperComponent
   ]
 })
 export class CheckoutModule { }

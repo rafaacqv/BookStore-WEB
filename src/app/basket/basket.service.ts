@@ -19,14 +19,17 @@ export class BasketService {
   basketTotalSource$ = this.basketTotalSource.asObservable();
 
   shipping = 0;
-  shippingValue: number = 1;
+  //shippingValue: number = 1;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
   setShippingPrice(deliveryMethod: DeliveryMethod) {
+    const basket = this.getCurrentBasketValue();
     this.shipping = deliveryMethod.price;
-    this.shippingValue = deliveryMethod.id;
-    this.calculateTotal();
+    if(basket) {
+      basket.deliveryMethodId = deliveryMethod.id;
+      this.setBasket(basket);
+    }
   }
 
   getBasket(id: string) {
