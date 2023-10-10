@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DeliveryMethod } from '../../shared/models/deliveryMethod.model';
 import { CheckoutService } from 'src/app/checkout/checkout.service';
@@ -8,6 +8,8 @@ import { BasketService } from 'src/app/basket/basket.service';
 import { Basket } from '../../shared/models/basket.model';
 import { Address } from '../../shared/models/user.model';
 import { Router } from '@angular/router';
+import { Stripe, StripeCardCvcElement, StripeCardExpiryElement,
+         StripeCardNumberElement, loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-stepper',
@@ -15,6 +17,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./stepper.component.css']
 })
 export class StepperComponent implements OnInit{
+  @ViewChild('cardNumber') cardNumberElement?: ElementRef;
+  @ViewChild('cardExpiry') cardExpiryElement?: ElementRef;
+  @ViewChild('cardCvc') cardCvcElement?: ElementRef;
+
+  stripe: Stripe | null = null;
+  cardNumber?: StripeCardNumberElement;
+  cardExpiry?: StripeCardExpiryElement;
+  cardCvc?: StripeCardCvcElement;
 
   constructor(private fb: FormBuilder,
               private checkoutService: CheckoutService,
@@ -27,6 +37,7 @@ export class StepperComponent implements OnInit{
     this.getDeliveryMethods();
     this.getDeliveryMethodValue();
     this.getAddressValues();
+    this.loadStripe();
   }
 
   isLinear = true;
@@ -48,6 +59,24 @@ export class StepperComponent implements OnInit{
   paymentForm = this.fb.group({
       nameOnCard: ['', Validators.required]
   });
+
+  loadStripe() {
+    loadStripe('pk_test_51NzVFFHNhwVdWQqAlCisPWSJ2DPXo9zCyHAxl9CWZpVNeQd2DQfRkwItH10ylnBM1HJGt4sI0ajImkx2CLA6PPmR00uKkqz8nU').then(stripe => {
+      this.stripe = stripe;
+      const elements = stripe?.elements()
+
+      if(elements) {
+        this.cardNumber = elements.create('cardNumber');
+        this.cardNumber.mount(this.cardNumberElement?.nativeElement)
+
+        this.cardExpiry = elements.create('cardExpiry');
+        this.cardExpiry.mount(this.cardExpiryElement?.nativeElement)
+
+        this.cardCvc = elements.create('cardCvc');
+        this.cardCvc.mount(this.cardCvcElement?.nativeElement)
+      }
+    })
+  }
 
   submitOrder() {
     const basket = this.basketService.getCurrentBasketValue();
@@ -110,5 +139,12 @@ export class StepperComponent implements OnInit{
 
   setShippingPrice(deliveryMethod: DeliveryMethod) {
     this.basketService.setShippingPrice(deliveryMethod);
+  }
+
+  createPaymentIntent() {
+    this.basketService.createPaymentIntent().subscribe({
+      next: () => this.snackBarService.success("Payment Intention Created"),
+      error: error => this.snackBarService.error(error.message)
+    });
   }
 }

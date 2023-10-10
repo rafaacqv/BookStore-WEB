@@ -83,6 +83,33 @@
     </div>
   </mat-step>
   <mat-step [stepControl]="paymentForm" label="Payment">
+    <form [formGroup]="paymentForm" style="display: grid; grid-template-columns: 1fr;">
+      <ng-template matStepLabel>Payment</ng-template>
+
+      <mat-form-field class="mat-input">
+        <mat-label>Name on Card</mat-label>
+        <input matInput placeholder="First name" formControlName="nameOnCard" required >
+        <mat-error *ngIf="paymentForm.controls['nameOnCard'].hasError('required')">
+          Name on Card is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="stripe-payment-elements">
+        <div>
+          <label for="card-number">Card Number</label>
+          <div  id="card-number" #cardNumber class="stripe-input"></div>
+        </div>
+        <div>
+          <label for="card-expiry">Card Expiry</label>
+          <div id="card-expiry" #cardExpiry class="stripe-input"></div>
+        </div>
+        <div>
+          <label for="card-cvc">Card Cvc</label>
+          <div id="card-cvc" #cardCvc class="stripe-input"></div>
+        </div>
+      </div>
+
+    </form>
     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-raised-button color="primary" type="submit" (click)="submitOrder()">Submit Order</button>

@@ -12,3 +12,15 @@
   gap: 20px;
 }
 
+.stripe-payment-elements {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  height: 77px;
+
+  gap: 20px;
+}
+
+.stripe-input {
+  margin-top: 15px;
+}
+
