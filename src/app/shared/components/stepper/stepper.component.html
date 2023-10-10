@@ -68,7 +68,8 @@
       <mat-radio-group formControlName="deliveryMethod">
         <mat-radio-button
         *ngFor="let method of deliveryMethods"
-        value="{{method.id}}"
+        [checked]="deliverMethodSelected == method.id"
+        value={{method.id}}
         style="display: block;"
         (click)="setShippingPrice(method)">
           <b>{{method.shortName}} - {{method.price | currency}}</b>
@@ -79,6 +80,12 @@
     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="paymentForm" label="Payment">
+    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" type="submit" (click)="submitOrder()">Submit Order</button>
     </div>
   </mat-step>
 </mat-stepper>

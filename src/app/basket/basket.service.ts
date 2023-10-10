@@ -19,7 +19,7 @@ export class BasketService {
   basketTotalSource$ = this.basketTotalSource.asObservable();
 
   shipping = 0;
-  shippingValue: number = 0;
+  shippingValue: number = 1;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
@@ -118,10 +118,14 @@ export class BasketService {
 
     return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({
       next: () => {
-        this.basketSource.next(null);
-        this.basketTotalSource.next(null);
-        localStorage.removeItem('basket_id');
+        this.deleteLocalBasket();
       }
     });
+  }
+
+  deleteLocalBasket() {
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
   }
 }
