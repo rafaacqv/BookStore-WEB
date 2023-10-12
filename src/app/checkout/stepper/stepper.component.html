@@ -79,7 +79,7 @@
     </form>
     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+      <button mat-button matStepperNext (click)="createPaymentIntent()">Next</button>
     </div>
   </mat-step>
   <mat-step [stepControl]="paymentForm" label="Payment">
@@ -98,6 +98,9 @@
         <div>
           <label for="card-number">Card Number</label>
           <div  id="card-number" #cardNumber class="stripe-input"></div>
+          <mat-error style="margin-top: 15px;">
+            {{this.cardErrors}}
+          </mat-error>
         </div>
         <div>
           <label for="card-expiry">Card Expiry</label>
@@ -112,7 +115,7 @@
     </form>
     <div style="display: flex; justify-content: space-between; margin-top: 20px;">
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" type="submit" (click)="submitOrder()">Submit Order</button>
+      <button [disabled]="!paymentFormComplete" mat-raised-button color="primary" type="submit" (click)="submitOrder()">Submit Order</button>
     </div>
   </mat-step>
 </mat-stepper>
