@@ -1,4 +1,8 @@
 <div class="order-details-container">
+  <a mat-button routerLink="/orders" style="margin-top: 15px;" color="primary">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    Back to Orders
+  </a>
   <div *ngIf="order" class="main-information">
     <h3 style="font-size: 21px;">Order Number: {{order.id}}</h3>
     <h3 style="font-size: 21px;">Status: <b>{{order.status}}</b></h3>

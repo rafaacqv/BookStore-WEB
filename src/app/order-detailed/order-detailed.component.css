@@ -1,6 +1,7 @@
 .order-details-container {
   width: 1200px;
   margin: 0 auto;
+  min-height: 100%;
 }
 
 .main-information {
@@ -13,6 +14,8 @@
 .order-item {
   width: 100%;
   height: 160px;
+  padding: 15px;
+  margin-bottom: 15px;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
 

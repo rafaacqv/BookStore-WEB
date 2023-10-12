@@ -49,7 +49,8 @@
   </div>
   <div class="order-summary">
     <app-order-totals></app-order-totals>
-    <div style="display: flex; width: 100%; flex-direction: row-reverse; margin-top: 15px;">
+    <div  *ngIf="(basketService.basketSource$ | async) as basket"
+          style="display: flex; width: 100%; flex-direction: row-reverse; margin-top: 15px;">
       <button mat-raised-button color="primary" routerLink ="/checkout">Proceed to Checkout</button>
     </div>
   </div>

@@ -1,4 +1,10 @@
 <div *ngIf="product" class="main-content">
+  <div style="display: flex; flex-direction: row; margin-bottom: 15px;">
+    <a mat-button routerLink="/" style="margin-top: 15px;" color="primary">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      Back to Shop
+    </a>
+  </div>
   <div class="show-product-container">
     <div class="image-container">
       <img
@@ -33,8 +39,7 @@
       </div>
 
       <div class="action-container">
-        <button type="button"(click)="addItemToBasket()" mat-stroked-button color="primary">Add to Cart</button>
-        <button type="button" mat-flat-button color="primary">Buy Now</button>
+        <button type="button"(click)="addItemToBasket()" mat-raised-button color="primary">Add to Cart</button>
       </div>
     </div>
   </div>
