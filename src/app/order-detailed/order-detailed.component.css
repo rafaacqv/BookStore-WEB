@@ -1,0 +1,39 @@
+.order-details-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.main-information {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.order-item {
+  width: 100%;
+  height: 160px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+
+  border-bottom: 1px solid rgba(0,0,0,.2)
+}
+
+img {
+  height: 160px;
+  object-fit: contain;
+}
+
+.product-description {
+  font-size: 18px;
+}
+
+.number-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-text {
+  font-size: 17px;
+}

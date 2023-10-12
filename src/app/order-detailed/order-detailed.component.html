@@ -1,1 +1,45 @@
-<p>order-detailed works!</p>
+<div class="order-details-container">
+  <div *ngIf="order" class="main-information">
+    <h3 style="font-size: 21px;">Order Number: {{order.id}}</h3>
+    <h3 style="font-size: 21px;">Status: <b>{{order.status}}</b></h3>
+  </div>
+
+  <div *ngIf="order">
+    <div *ngFor="let item of order.orderItems" class="order-item">
+      <div >
+        <img
+            src={{item.imageUrl}}
+          />
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <span class="product-description">Title: {{item.productName}}</span>
+        <span class="product-description" style="margin-top: 10px;;">Quantity: <strong>{{item.quantity}}</strong></span>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <span class="product-description">Price(un): {{item.price | currency}}</span>
+        <span class="product-description" style="margin-top: 10px;;">Total: <strong>{{item.price * item.quantity | currency}}</strong></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: row-reverse;">
+      <div style="width: 50%; ">
+        <h3>Order Details</h3>
+        <div style="width: 100%; border-bottom: 1px solid rgba(0,0,0,.2);"></div>
+        <div style="display: flex; flex-direction: column; margin-top: 15px;">
+          <div class="number-container" style="margin-bottom: 10px;">
+            <span class="summary-text">Subtotal: </span>
+            <span class="summary-text"><strong>{{order.shippingPrice | currency}}</strong></span>
+          </div>
+          <div class="number-container" style="margin-bottom: 20px">
+            <span class="summary-text"class="summary-text">Shipping: </span>
+            <span class="summary-text"><strong>{{order.shippingPrice | currency}}</strong></span>
+          </div>
+          <div style="width: 100%; border-bottom: 1px solid rgba(0,0,0,.2);"></div>
+          <div class="number-container">
+            <span class="summary-text">Total: </span>
+            <span class="summary-text"><strong>{{order.total | currency}}</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
