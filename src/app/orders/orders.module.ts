@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OrdersComponent } from './orders.component';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderDetailedComponent } from '../order-detailed/order-detailed.component';
+import { MaterialModule } from '../core/material/material.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { OrderDetailedComponent } from '../order-detailed/order-detailed.compone
   ],
   imports: [
     CommonModule,
+    MaterialModule,
     OrdersRoutingModule
   ]
 })
