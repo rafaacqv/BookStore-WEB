@@ -3,7 +3,9 @@
     <mat-card-content>
       <h1 style="font-size: 24px;"><b>Thank You!</b> Your order has been received :)</h1>
       <p>We will begin processing it right away.</p>
-      <button mat-button color="primary" (click)="viewOrders()">View Orders</button>
+
+      <button *ngIf="order" routerLink="/orders/{{order.id}}" mat-button color="primary">View Your Order</button>
+      <button *ngIf="!order" routerLink="/orders" mat-button color="primary">View Orders</button>
     </mat-card-content>
   </mat-card>
 </div>

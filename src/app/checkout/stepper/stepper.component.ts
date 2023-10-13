@@ -7,7 +7,7 @@ import { SnackBarService } from 'src/app/core/material/snackbar.service';
 import { BasketService } from 'src/app/basket/basket.service';
 import { Basket } from '../../shared/models/basket.model';
 import { Address } from '../../shared/models/user.model';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Stripe, StripeCardCvcElement, StripeCardExpiryElement,
          StripeCardNumberElement, loadStripe } from '@stripe/stripe-js';
 import { LoadingService } from 'src/app/core/material/loading.service';
@@ -115,7 +115,8 @@ export class StepperComponent implements OnInit{
 
       if(paymentResult.paymentIntent) {
         this.basketService.deleteBasket(basket);
-        this.router.navigateByUrl('checkout/success')
+        const navigationExtras: NavigationExtras = {state: createdOrder};
+        this.router.navigateByUrl('checkout/success', navigationExtras)
       }
       else {
         this.snackBarService.error(paymentResult.error.message!);

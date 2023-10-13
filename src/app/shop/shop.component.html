@@ -51,6 +51,9 @@
             >
           </mat-form-field>
         </div>
+        <div *ngIf="products.length == 0">
+          <span>No products found for this filter.</span>
+        </div>
         <div
           [fxFlex]="(100/gridColumns) + '%'"
           fxFlex.sm="33%"

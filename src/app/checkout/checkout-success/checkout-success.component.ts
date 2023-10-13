@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Order } from 'src/app/shared/models/order.model';
 
 @Component({
   selector: 'app-checkout-success',
@@ -7,9 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./checkout-success.component.css']
 })
 export class CheckoutSuccessComponent {
-  constructor(private router: Router) {}
+  order?: Order;
 
-  viewOrders() {
-    this.router.navigateByUrl('/');
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.order = navigation?.extras?.state as Order
   }
 }

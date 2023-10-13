@@ -5,8 +5,11 @@
   </a>
 
   <h1 style="margin-top: 40px;">Your orders</h1>
+  <div *ngIf="dataSource.length == 0">
+    <span>No orders found for this user.</span>
+  </div>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table *ngIf="dataSource.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="order">
       <th mat-header-cell *matHeaderCellDef> No. </th>
