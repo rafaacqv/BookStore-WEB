@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "cuid"
             ],
-            "outputPath": "dist/book-store-web",
+            "outputPath": "../PUC.PosGraduacao.BookStore.API/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
